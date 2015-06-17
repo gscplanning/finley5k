@@ -1,0 +1,27 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "Name": "Start near", "Description": "Start near Memorial Drive, Georgetown, KY 40324, USA" }, "geometry": { "type": "Point", "coordinates": [ -84.55449, 38.20909, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Head south", "Description": "Head south on Memorial Dr toward E College St" }, "geometry": { "type": "Point", "coordinates": [ -84.55449, 38.20909, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Head east ", "Description": "Head east on E College St toward Giddings Cir" }, "geometry": { "type": "Point", "coordinates": [ -84.55462, 38.20795, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Head north", "Description": "Head north on Military St toward E College St" }, "geometry": { "type": "Point", "coordinates": [ -84.5513, 38.20776, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Head west ", "Description": "Head west on E Main St toward Chambers Ave" }, "geometry": { "type": "Point", "coordinates": [ -84.55116, 38.20943, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Head south", "Description": "Head south on S Hamilton St toward E Constitution Ave" }, "geometry": { "type": "Point", "coordinates": [ -84.55806, 38.20985, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Head east", "Description": "Head east" }, "geometry": { "type": "Point", "coordinates": [ -84.55887, 38.19949, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Head north", "Description": "Head north" }, "geometry": { "type": "Point", "coordinates": [ -84.55804, 38.19949, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Head west ", "Description": "Head west toward S Hamilton St" }, "geometry": { "type": "Point", "coordinates": [ -84.55809, 38.19977, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Head west ", "Description": "Head west toward S Hamilton St" }, "geometry": { "type": "Point", "coordinates": [ -84.55881, 38.19979, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Turn right", "Description": "Turn right onto S Hamilton St" }, "geometry": { "type": "Point", "coordinates": [ -84.55884, 38.19979, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Turn right", "Description": "Turn right onto Old Lemons Mill Rd" }, "geometry": { "type": "Point", "coordinates": [ -84.55865, 38.20274, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Head east ", "Description": "Head east on Old Lemons Mill Rd toward Louie B Nunn Dr" }, "geometry": { "type": "Point", "coordinates": [ -84.55856, 38.20274, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Head east ", "Description": "Head east on Old Lemons Mill Rd toward Military St" }, "geometry": { "type": "Point", "coordinates": [ -84.55452, 38.20267, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Head north", "Description": "Head north on Military St toward Beaupel Pl" }, "geometry": { "type": "Point", "coordinates": [ -84.55175, 38.20222, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Head north", "Description": "Head north on Military St toward Jackson St" }, "geometry": { "type": "Point", "coordinates": [ -84.55143, 38.20628, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Turn left ", "Description": "Turn left onto Jackson St" }, "geometry": { "type": "Point", "coordinates": [ -84.55142, 38.20631, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Head north", "Description": "Head north on S Mulberry St toward E College St" }, "geometry": { "type": "Point", "coordinates": [ -84.55713, 38.20664, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Head east ", "Description": "Head east on E College St toward Giddings Cir" }, "geometry": { "type": "Point", "coordinates": [ -84.557, 38.2081, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Head north", "Description": "Head north on Memorial Dr toward E Main St" }, "geometry": { "type": "Point", "coordinates": [ -84.55462, 38.20795, 0.0 ] } }
+]
+}
