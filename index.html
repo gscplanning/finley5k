@@ -1,0 +1,58 @@
+<html>
+<head>
+	<title>Finley 5K Route Map</title>
+	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+	<script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.0/mapbox.js'></script>
+	<link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.0/mapbox.css' rel='stylesheet' />
+	<style type="text/css">
+		body { margin:0; padding:0; }
+  		#map { position:absolute; top:0; bottom:0; width:100%; }
+	</style>
+</head>
+<body>
+	<div id="map"></div>
+</body>
+<script type="text/javascript">
+L.mapbox.accessToken = 'pk.eyJ1IjoiZ3NjcGxhbm5pbmciLCJhIjoiRVZMNXpsQSJ9.5OxUlJTCDplPkdkKNlB91A'
+
+var map = L.mapbox.map('map', null, {
+	maxZoom: 20,
+	minZoom: 16
+}).setView([38.206562, -84.555556], 16);
+
+var terrain = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.png', {
+	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+	subdomains: 'abcd',
+	minZoom: 4,
+	maxZoom: 20,
+	ext: 'png'
+});
+
+var topo = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toposm-color-relief/{z}/{x}/{y}.png', {
+	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+	subdomains: 'abcd',
+	minZoom: 0,
+	maxZoom: 20,
+	ext: 'jpg'
+});
+
+var satellite = L.tileLayer('http://{s}.{base}.maps.cit.api.here.com/maptile/2.1/maptile/{mapID}/hybrid.day/{z}/{x}/{y}/256/png8?app_id={app_id}&app_code={app_code}', {
+	attribution: 'Map &copy; 1987-2014 <a href="http://developer.here.com">HERE</a>',
+	subdomains: '1234',
+	mapID: 'newest',
+	app_id: 'Y8m9dK2brESDPGJPdrvs',
+	app_code: 'dq2MYIvjAotR8tHvY8Q_Dg',
+	base: 'aerial',
+	maxZoom: 20
+});
+
+var baseLayers = {
+	Terrain: terrain,
+	Satellite: satellite
+};
+
+baseLayers.Terrain.addTo(map);
+L.control.layers(baseLayers).addTo(map);
+	
+</script>
+</html>
