@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml creator="plotaroute.com http://www.plotaroute.com" xmlns="http://earth.google.com/kml/2.2">
+<Document>
+<name>Finley 5K Main St Course</name>
+<open>1</open>
+<Style id="RoutePath">
+<LineStyle>
+<color>CC14DCF3</color>
+<width>4</width>
+</LineStyle>
+</Style>
+<Style id="StartIconStyle">
+<IconStyle id="StartIcon">
+<Icon><href>http://www.plotaroute.com/images/icons/starticon.png</href></Icon>
+</IconStyle>
+<LabelStyle><scale>0.7</scale></LabelStyle>
+</Style>
+<Style id="FinishIconStyle">
+<IconStyle id="FinishIcon">
+<Icon><href>http://www.plotaroute.com/images/icons/finishicon.png</href></Icon>
+</IconStyle>
+<LabelStyle><scale>0.7</scale></LabelStyle>
+</Style>
+<LookAt>
+<longitude>-84.554490</longitude>
+<latitude>38.209090</latitude>
+<range>400</range>
+<tilt>60</tilt>
+<altitudeMode>clampToGround</altitudeMode>
+</LookAt>
+<Placemark>
+<name>START</name>
+<styleUrl>#StartIconStyle</styleUrl>
+<Point>
+<coordinates>-84.55449,38.20909,267</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>FINISH</name>
+<styleUrl>#FinishIconStyle</styleUrl>
+<Point>
+<coordinates>-84.55451,38.20884,266</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Fly-Over Tour</name>
+<styleUrl>#RoutePath</styleUrl>
+<LineString id="Route">
+<extrude>0</extrude>
+<tessellate>1</tessellate>
+<coordinates>
+-84.55449,38.20909,267
+-84.55449,38.20909,267
+-84.55462,38.20795,265
+-84.55462,38.20795,265
+-84.55446,38.20794,266
+-84.55402,38.20792,266
+-84.55383,38.20791,266
+-84.55359,38.2079,266
+-84.55329,38.20788,266
+-84.55267,38.20785,266
+-84.55254,38.20784,267
+-84.5522,38.20782,267
+-84.55194,38.2078,268
+-84.5513,38.20776,270
+-84.5513,38.20776,270
+-84.55129,38.20791,270
+-84.55128,38.20801,270
+-84.55125,38.20833,270
+-84.55123,38.20861,271
+-84.5512,38.20891,272
+-84.55116,38.20941,273
+-84.55116,38.20943,273
+-84.55271,38.20952,269
+-84.55442,38.20962,266
+-84.55583,38.20971,264
+-84.55687,38.20979,263
+-84.55709,38.2098,262
+-84.55726,38.20981,261
+-84.55762,38.20983,260
+-84.55806,38.20985,261
+-84.55806,38.20985,261
+-84.55815,38.20884,258
+-84.55823,38.20817,259
+-84.55828,38.20749,263
+-84.55836,38.20669,262
+-84.5584,38.20611,260
+-84.55855,38.20431,255
+-84.55861,38.2031,260
+-84.55865,38.20274,261
+-84.55863,38.20254,262
+-84.55863,38.20233,263
+-84.55884,38.19979,269
+-84.55887,38.19949,269
+-84.55887,38.19949,269
+-84.55874,38.19949,269
+-84.5582,38.19946,269
+-84.55814,38.19946,269
+-84.55813,38.19946,269
+-84.55807,38.19947,269
+-84.55804,38.19949,268
+-84.55804,38.19949,268
+-84.55803,38.19949,268
+-84.55802,38.19951,268
+-84.55801,38.1996,268
+-84.55801,38.19966,268
+-84.55801,38.19971,268
+-84.55805,38.19975,268
+-84.55809,38.19977,268
+-84.55809,38.19977,268
+-84.5581,38.19977,268
+-84.55816,38.19977,268
+-84.5587,38.19979,268
+-84.55881,38.19979,269
+-84.55881,38.19979,269
+-84.55884,38.19979,269
+-84.55884,38.19979,269
+-84.55863,38.20233,263
+-84.55863,38.20254,262
+-84.55865,38.20274,261
+-84.55865,38.20274,261
+-84.55856,38.20274,262
+-84.55856,38.20274,262
+-84.55825,38.20274,262
+-84.55813,38.20274,262
+-84.55756,38.2027,260
+-84.55737,38.2027,260
+-84.55716,38.2027,259
+-84.55466,38.20268,262
+-84.55452,38.20267,262
+-84.55452,38.20267,262
+-84.55401,38.20265,264
+-84.5537,38.20261,264
+-84.55175,38.20222,266
+-84.55175,38.20222,266
+-84.55169,38.20292,269
+-84.55168,38.20318,270
+-84.5516,38.20398,273
+-84.5516,38.20408,274
+-84.55158,38.20434,273
+-84.55157,38.2045,272
+-84.55154,38.20476,271
+-84.55153,38.20501,270
+-84.55148,38.20553,268
+-84.55145,38.20602,268
+-84.55143,38.20628,268
+-84.55143,38.20628,268
+-84.55142,38.20631,268
+-84.55142,38.20631,268
+-84.55221,38.20635,266
+-84.55296,38.20641,264
+-84.55327,38.20643,264
+-84.55334,38.20643,264
+-84.55339,38.20643,264
+-84.55357,38.20644,265
+-84.5538,38.20645,266
+-84.55401,38.20647,267
+-84.55417,38.20647,268
+-84.55421,38.20648,268
+-84.55426,38.20648,268
+-84.55455,38.20649,268
+-84.55478,38.20651,267
+-84.55534,38.20654,266
+-84.55535,38.20654,266
+-84.55552,38.20656,265
+-84.5556,38.20655,265
+-84.55617,38.20657,265
+-84.55625,38.20658,265
+-84.5565,38.20659,266
+-84.55713,38.20664,264
+-84.55713,38.20664,264
+-84.55706,38.20749,265
+-84.55703,38.20777,262
+-84.557,38.2081,260
+-84.557,38.2081,260
+-84.55633,38.20806,261
+-84.55613,38.20804,262
+-84.55523,38.20798,264
+-84.55484,38.20797,265
+-84.55464,38.20795,265
+-84.55462,38.20795,265
+-84.55451,38.20884,266
+</coordinates>
+</LineString>
+</Placemark>
+<Style id="DistMarkerStyle">
+<IconStyle id="DistMarkerIcon">
+<Icon><href>http://www.plotaroute.com/images/icons/mileicon.png</href></Icon>
+<hotSpot x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
+</IconStyle>
+<LabelStyle><scale>0.7</scale></LabelStyle>
+</Style>
+<Placemark>
+<name>1 mile</name>
+<styleUrl>#DistMarkerStyle</styleUrl>
+<Point>
+<coordinates>-84.55838861486791,38.206275084415424,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>2 miles</name>
+<styleUrl>#DistMarkerStyle</styleUrl>
+<Point>
+<coordinates>-84.55466520799517,38.20268004166396,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>3 miles</name>
+<styleUrl>#DistMarkerStyle</styleUrl>
+<Point>
+<coordinates>-84.55459921291661,38.2081181864019,0</coordinates>
+</Point>
+</Placemark>
+<Style id="WaypointIconStyle">
+<IconStyle id="WaypointIcon">
+<Icon><href>http://www.plotaroute.com/images/icons/waypointicon.png</href></Icon>
+<hotSpot x="0.5" y="0.5" xunits="fraction" yunits="fraction"/>
+</IconStyle>
+<LabelStyle><scale>0.7</scale></LabelStyle>
+</Style>
+<Placemark>
+<name>Start near</name>
+<description>Start near Memorial Drive, Georgetown, KY 40324, USA</description>
+<styleUrl>#WaypointIconStyle</styleUrl>
+<Point>
+<coordinates>-84.55449,38.20909,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Head south</name>
+<description>Head south on Memorial Dr toward E College St</description>
+<styleUrl>#WaypointIconStyle</styleUrl>
+<Point>
+<coordinates>-84.55449,38.20909,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Head east </name>
+<description>Head east on E College St toward Giddings Cir</description>
+<styleUrl>#WaypointIconStyle</styleUrl>
+<Point>
+<coordinates>-84.55462,38.20795,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Head north</name>
+<description>Head north on Military St toward E College St</description>
+<styleUrl>#WaypointIconStyle</styleUrl>
+<Point>
+<coordinates>-84.5513,38.20776,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Head west </name>
+<description>Head west on E Main St toward Chambers Ave</description>
+<styleUrl>#WaypointIconStyle</styleUrl>
+<Point>
+<coordinates>-84.55116,38.20943,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Head south</name>
+<description>Head south on S Hamilton St toward E Constitution Ave</description>
+<styleUrl>#WaypointIconStyle</styleUrl>
+<Point>
+<coordinates>-84.55806,38.20985,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Head east</name>
+<description>Head east</description>
+<styleUrl>#WaypointIconStyle</styleUrl>
+<Point>
+<coordinates>-84.55887,38.19949,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Head north</name>
+<description>Head north</description>
+<styleUrl>#WaypointIconStyle</styleUrl>
+<Point>
+<coordinates>-84.55804,38.19949,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Head west </name>
+<description>Head west toward S Hamilton St</description>
+<styleUrl>#WaypointIconStyle</styleUrl>
+<Point>
+<coordinates>-84.55809,38.19977,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Head west </name>
+<description>Head west toward S Hamilton St</description>
+<styleUrl>#WaypointIconStyle</styleUrl>
+<Point>
+<coordinates>-84.55881,38.19979,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Turn right</name>
+<description>Turn right onto S Hamilton St</description>
+<styleUrl>#WaypointIconStyle</styleUrl>
+<Point>
+<coordinates>-84.55884,38.19979,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Turn right</name>
+<description>Turn right onto Old Lemons Mill Rd</description>
+<styleUrl>#WaypointIconStyle</styleUrl>
+<Point>
+<coordinates>-84.55865,38.20274,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Head east </name>
+<description>Head east on Old Lemons Mill Rd toward Louie B Nunn Dr</description>
+<styleUrl>#WaypointIconStyle</styleUrl>
+<Point>
+<coordinates>-84.55856,38.20274,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Head east </name>
+<description>Head east on Old Lemons Mill Rd toward Military St</description>
+<styleUrl>#WaypointIconStyle</styleUrl>
+<Point>
+<coordinates>-84.55452,38.20267,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Head north</name>
+<description>Head north on Military St toward Beaupel Pl</description>
+<styleUrl>#WaypointIconStyle</styleUrl>
+<Point>
+<coordinates>-84.55175,38.20222,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Head north</name>
+<description>Head north on Military St toward Jackson St</description>
+<styleUrl>#WaypointIconStyle</styleUrl>
+<Point>
+<coordinates>-84.55143,38.20628,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Turn left </name>
+<description>Turn left onto Jackson St</description>
+<styleUrl>#WaypointIconStyle</styleUrl>
+<Point>
+<coordinates>-84.55142,38.20631,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Head north</name>
+<description>Head north on S Mulberry St toward E College St</description>
+<styleUrl>#WaypointIconStyle</styleUrl>
+<Point>
+<coordinates>-84.55713,38.20664,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Head east </name>
+<description>Head east on E College St toward Giddings Cir</description>
+<styleUrl>#WaypointIconStyle</styleUrl>
+<Point>
+<coordinates>-84.557,38.2081,0</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Head north</name>
+<description>Head north on Memorial Dr toward E Main St</description>
+<styleUrl>#WaypointIconStyle</styleUrl>
+<Point>
+<coordinates>-84.55462,38.20795,0</coordinates>
+</Point>
+</Placemark>
+<ScreenOverlay>
+<name>plotaroute.com</name>
+<visibility>1</visibility>
+<open>1</open>
+<Icon>
+<href>http://www.plotaroute.com/images/logo34reversev3.png</href>
+</Icon>
+<overlayXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+<screenXY x="0.01" y="0.04" xunits="fraction" yunits="fraction"/>
+<rotationXY x="0" y="0" xunits="fraction" yunits="fraction"/>
+<size x="0" y="0" xunits="fraction" yunits="fraction"/>
+</ScreenOverlay>
+<Snippet><![CDATA[This route was downloaded from <a href="http://www.plotaroute.com">plotaroute.com</a>]]></Snippet>
+</Document>
+</kml>
