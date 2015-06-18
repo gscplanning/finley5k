@@ -2,14 +2,47 @@
 <head>
 	<title>Finley 5K Route Map</title>
 	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-	<script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.0/mapbox.js'></script>
+	
 	<link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.0/mapbox.css' rel='stylesheet' />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+
+	<script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.0/mapbox.js'></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+
 	<style type="text/css">
 		body { margin:0; padding:0; }
-  		#map { position:absolute; top:0; bottom:0; width:100%; }
+  		#map {
+		        width: 600px;
+		        height: 600px;
+	    	}
+  		button {
+  			width: 100%
+  		}
+  		.mi-label, .km-label{
+  			font-family: 'Open Sans', Arial, sans-serif;
+  			color: #f3f3f3;
+  			border-radius: 16px;
+  			border: 2px solid #f3f3f3;
+  			opacity: 1;
+  			text-align: center;
+  		}
+
+  		.mi-label {
+  			background: #E88CA9;
+  		}
+
+  		.km-label {
+  			background: #B38CB4;
+  		}
 	</style>
 </head>
 <body>
+	<div class="btn-group">
+		<button type="button" id="miles" class="btn btn-primary">Miles</button>
+		<button type="button" id="km" class="btn btn-danger">Km</button>
+	</div>
 	<div id="map"></div>
 </body>
 <script type="text/javascript">
@@ -52,7 +85,141 @@ var baseLayers = {
 };
 
 baseLayers.Terrain.addTo(map);
-L.control.layers(baseLayers).addTo(map);
+L.control.layers(baseLayers, null, {
+	collapsed: false
+}).addTo(map);
+
+// Course
+
+courseStyle = {
+	"color": "#3C9FD8",
+	"weight": 4,
+	"opacity": 0.95
+}
+
+var promise = $.getJSON('./data/finley5k_course_ln.geojson');
+promise.then(function(data) {
+	var course = L.geoJson(data, {
+		style: courseStyle
+	}).addTo(map);
+});
+
+
+// Start & Finish markers
+var startIcon = L.icon({
+	iconUrl: './markers/startIcon.svg',
+	iconSize: [24,24]
+})
+var finishIcon = L.icon({
+	iconUrl: './markers/finishIcon.png',
+	iconSize: [24,24]
+})
+
+var promise = $.getJSON('./data/finley5k_startFinish.geojson');
+promise.then(function(data) {
+	var startFinish = L.geoJson(data);
+
+	var start = L.geoJson(data, {
+		filter: function(feature, layer) {
+			return feature.properties.Name == 'START';
+		},
+		pointToLayer: function(feature, latlng) {
+			var startMarker = L.marker(latlng, {
+				icon: startIcon
+			});
+			var name = feature.properties.Name;
+			var letterOne = name[0];
+			var letterRest = name.substr(1).toLowerCase();
+			var popup= function () {
+				var name = feature.properties.Name;
+				var letterOne = name[0];
+				var letterRest = name.substr(1).toLowerCase();
+				this.bindPopup(letterOne + letterRest + ' Line').openPopup()
+			}
+			
+			return startMarker
+				.on('mouseover', popup)
+				.on('mouseout', function() {
+				this.closePopup();
+			});
+		}
+	});
+
+	var finish = L.geoJson(data, {
+		filter: function (feature, layer) {
+			return feature.properties.Name == 'FINISH';
+		},
+		pointToLayer: function(feature, latlng) {
+			var finishMarker =  L.marker(latlng, {
+				icon: finishIcon
+			});
+			var name = feature.properties.Name;
+			var letterOne = name[0];
+			var letterRest = name.substr(1).toLowerCase();
+			var popup= function () {
+				var name = feature.properties.Name;
+				var letterOne = name[0];
+				var letterRest = name.substr(1).toLowerCase();
+				this.bindPopup(letterOne + letterRest + ' Line').openPopup()
+			}
+			
+			return finishMarker
+				.on('mouseover', popup)
+				.on('mouseout', function() {
+				this.closePopup();
+			});
+		}
+	});
+	start.addTo(map);
+	finish.addTo(map);
+});
+
+// Distance markers
+
+var promise = $.getJSON('./data/finley5k_distMarkers.geojson');
+promise.then(function(data) {
+	var distance = L.geoJson(data);
+	var miles = L.geoJson(data, {
+		filter: function (feature, layer) {
+			return feature.properties.unit == 'mi';
+		},
+		pointToLayer: function(feature, ll) {
+			return L.marker(ll, {
+				icon: L.divIcon({
+					className: 'mi-label',
+					html: '<strong>' + feature.properties.dist + '</strong>',
+					iconSize: [24,24]
+				})
+			});
+		}
+	});
+	var km = L.geoJson(data, {
+		filter: function (feature, layer) {
+			return feature.properties.unit == 'km';
+		},
+		pointToLayer: function(feature, ll) {
+			return L.marker(ll, {
+				icon: L.divIcon({
+					className: 'km-label',
+					html: '<strong>' + feature.properties.dist + '</strong>',
+					iconSize: [24,24]
+				})
+			});
+		}
+	});
+	// 
+
+	$("#miles").click(function() {
+		map.addLayer(miles)
+		map.removeLayer(km)
+	});
+
+	$("#km").click(function() {
+		map.addLayer(km)
+		map.removeLayer(miles)
+	});
+});
+
 	
 </script>
 </html>

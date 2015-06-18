@@ -5,3 +5,9 @@ Map for the [Finley 5k](http://www.finley105.org/)
 
 ## Colors
 [Preliminary palette](http://coolors.co/e88ca9-9ab174-3c9fd8-f39c6b-b38cb4)
+
+## Resources that have been super helpful
+
+- ["Creating a Leaflet.js mapping app from the ground up"](http://zevross.com/blog/2014/10/28/tips-for-creating-leafleft-js-maps/)
+- ["Markers as text labels"](https://www.mapbox.com/mapbox.js/example/v1.0.0/show-marker-as-label/)
+- ["Toggling UI"](https://www.mapbox.com/mapbox.js/example/v1.0.0/toggling-ui/)
