@@ -5,21 +5,28 @@
 	
 	<link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.0/mapbox.css' rel='stylesheet' />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 
 	<script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.0/mapbox.js'></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 
 	<style type="text/css">
-		body { margin:0; padding:0; }
+		body {
+			margin:0; padding:0; 
+		}
   		#map {
-		        width: 600px;
-		        height: 600px;
+			width: 100%;
+			height: 100%;
+			font-family: 'Open Sans', Arial, sans-serif;
 	    	}
-  		button {
-  			width: 100%
-  		}
+
+	    	.active {
+	    		font-weight: bold !important;
+	    	}
+
   		.mi-label, .km-label{
   			font-family: 'Open Sans', Arial, sans-serif;
   			color: #f3f3f3;
@@ -36,58 +43,120 @@
   		.km-label {
   			background: #B38CB4;
   		}
+
+  		.menu-ui {
+  			position: absolute;
+  			top: 10px; right: 10px;
+  			z-index: 1;
+  		}
+
+  		#miles>i {
+  			color:#E88CA9;
+  			-webkit-text-stroke-width: 1px;
+    			-webkit-text-stroke-color: #f3f3f3;
+  		}
+  		#km>i {
+  			color:#B38CB4;
+  			-webkit-text-stroke-width: 1px;
+    			-webkit-text-stroke-color: #f3f3f3;
+  		}
 	</style>
 </head>
 <body>
-	<div class="btn-group">
+	<!-- <div class="btn-group">
 		<button type="button" id="miles" class="btn btn-primary">Miles</button>
 		<button type="button" id="km" class="btn btn-danger">Km</button>
+	</div> -->
+	<div id="map">
+		<div class="btn-group-vertical menu-ui" role="group" aria-label="...">
+			<div class="btn-group" role="group">
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Basemap
+				<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a href="#" id="streets" class="active">Streets</a></li>
+					<li><a href="#" id="satellite">Satellite</a></li>
+				</ul>
+			</div>
+			<div class="btn-group" role="group">	
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Distance Markers
+				<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a href="#" id="miles"><i class="fa fa-circle"></i> Miles</a></li>
+					<li><a href="#" id="km"><i class="fa fa-circle"></i> Kilometers</a></li>
+				</ul>
+			</div>
+			<!-- <button type="button" class="btn btn-default">Play Route</button> -->
+		</div>
 	</div>
-	<div id="map"></div>
 </body>
 <script type="text/javascript">
 L.mapbox.accessToken = 'pk.eyJ1IjoiZ3NjcGxhbm5pbmciLCJhIjoiRVZMNXpsQSJ9.5OxUlJTCDplPkdkKNlB91A'
 
+var limitSouthWest=L.latLng(38.181445, -84.599018),
+	limitNorthEast=L.latLng(38.241871, -84.533272),
+	limitBounds=L.latLngBounds(limitSouthWest, limitNorthEast);
+
+var courseSouthWest = L.latLng(38.199311, -84.559075),
+	courseNorthEast = L.latLng(38.209681, -84.550513),
+	courseBounds = L.latLngBounds(courseSouthWest, courseNorthEast);
+
 var map = L.mapbox.map('map', null, {
 	maxZoom: 20,
-	minZoom: 16
-}).setView([38.206562, -84.555556], 16);
-
-var terrain = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.png', {
-	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-	subdomains: 'abcd',
-	minZoom: 4,
-	maxZoom: 20,
-	ext: 'png'
+	minZoom: 14,
+	maxBounds: limitBounds
 });
 
-var topo = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toposm-color-relief/{z}/{x}/{y}.png', {
-	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-	subdomains: 'abcd',
-	minZoom: 0,
-	maxZoom: 20,
-	ext: 'jpg'
+map.fitBounds(courseBounds);
+
+var streets = L.tileLayer('http://{s}.{base}.maps.cit.api.here.com/maptile/2.1/maptile/{mapID}/normal.day/{z}/{x}/{y}/256/png8?app_id={app_id}&app_code={app_code}', {
+	attribution: 'Map &copy; 1987-2014 <a href="http://developer.here.com">HERE</a>',
+	subdomains: '1234',
+	mapID: 'newest',
+	app_id: 'KyV8pDypNozhxHmc7pB1',
+	app_code: '6BKq0rJQx1nDAixDbD3OxQ',
+	base: 'base',
+	maxZoom: 20
 });
 
 var satellite = L.tileLayer('http://{s}.{base}.maps.cit.api.here.com/maptile/2.1/maptile/{mapID}/hybrid.day/{z}/{x}/{y}/256/png8?app_id={app_id}&app_code={app_code}', {
 	attribution: 'Map &copy; 1987-2014 <a href="http://developer.here.com">HERE</a>',
 	subdomains: '1234',
 	mapID: 'newest',
-	app_id: 'Y8m9dK2brESDPGJPdrvs',
-	app_code: 'dq2MYIvjAotR8tHvY8Q_Dg',
+	app_id: 'KyV8pDypNozhxHmc7pB1',
+	app_code: '6BKq0rJQx1nDAixDbD3OxQ',
 	base: 'aerial',
 	maxZoom: 20
 });
 
 var baseLayers = {
-	Terrain: terrain,
+	Streets: streets,
 	Satellite: satellite
 };
 
-baseLayers.Terrain.addTo(map);
-L.control.layers(baseLayers, null, {
-	collapsed: false
-}).addTo(map);
+baseLayers.Streets.addTo(map);
+
+$("#streets").click(function() {
+		map.addLayer(streets)
+		map.removeLayer(satellite)
+		if ($("#satellite").hasClass("active")) {
+			$("#satellite").removeClass("active");
+			$("#streets").addClass("active");
+		}
+	});
+
+$("#satellite").click(function() {
+		map.addLayer(satellite)
+		map.removeLayer(streets)
+		if ($("#streets").hasClass("active")) {
+			$("#streets").removeClass("active");
+			$("#satellite").addClass("active");
+		}
+	});
+
 
 // Course
 
@@ -108,11 +177,11 @@ promise.then(function(data) {
 // Start & Finish markers
 var startIcon = L.icon({
 	iconUrl: './markers/startIcon.svg',
-	iconSize: [24,24]
+	iconSize: [20,20]
 })
 var finishIcon = L.icon({
 	iconUrl: './markers/finishIcon.png',
-	iconSize: [24,24]
+	iconSize: [20,20]
 })
 
 var promise = $.getJSON('./data/finley5k_startFinish.geojson');
@@ -183,8 +252,8 @@ promise.then(function(data) {
 		filter: function (feature, layer) {
 			return feature.properties.unit == 'mi';
 		},
-		pointToLayer: function(feature, ll) {
-			return L.marker(ll, {
+		pointToLayer: function(feature, latlng) {
+			return L.marker(latlng, {
 				icon: L.divIcon({
 					className: 'mi-label',
 					html: '<strong>' + feature.properties.dist + '</strong>',
@@ -197,8 +266,8 @@ promise.then(function(data) {
 		filter: function (feature, layer) {
 			return feature.properties.unit == 'km';
 		},
-		pointToLayer: function(feature, ll) {
-			return L.marker(ll, {
+		pointToLayer: function(feature, latlng) {
+			return L.marker(latlng, {
 				icon: L.divIcon({
 					className: 'km-label',
 					html: '<strong>' + feature.properties.dist + '</strong>',
@@ -212,11 +281,23 @@ promise.then(function(data) {
 	$("#miles").click(function() {
 		map.addLayer(miles)
 		map.removeLayer(km)
+		if ($("#km").hasClass("active")) {
+			$("#km").removeClass("active");
+			$("#miles").addClass("active");
+		} else {
+			$("#miles").addClass("active");
+		}
 	});
 
 	$("#km").click(function() {
 		map.addLayer(km)
 		map.removeLayer(miles)
+		if ($("#miles").hasClass("active")) {
+			$("#miles").removeClass("active");
+			$("#km").addClass("active");
+		} else {
+			$("#km").addClass("active");
+		}
 	});
 });
 
