@@ -10,6 +10,7 @@
 
 	<script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.0/mapbox.js'></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/leaflet.textpath.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 
@@ -166,10 +167,20 @@ courseStyle = {
 	"opacity": 0.85
 }
 
-var promise = $.getJSON('./data/finley5k_course_ln.geojson');
+var promise = $.getJSON('./data/CARTO_finley5k_course_ln.geojson');
 promise.then(function(data) {
 	var course = L.geoJson(data, {
-		style: courseStyle
+		style: courseStyle,
+		onEachFeature: function (feature, layer) {
+			layer.setText('\u279c          ', {
+				offset: 4.5,
+				repeat: true,
+				attributes: {
+					fill: "#404b4c",
+					"font-size": "13"
+				}
+			});
+		}
 	}).addTo(map);
 });
 
@@ -184,7 +195,7 @@ var finishIcon = L.icon({
 	iconSize: [20,20]
 })
 
-var promise = $.getJSON('./data/finley5k_startFinish.geojson');
+var promise = $.getJSON('./data/CARTO_finley5k_startFinish.geojson');
 promise.then(function(data) {
 	var startFinish = L.geoJson(data);
 
@@ -245,7 +256,7 @@ promise.then(function(data) {
 
 // Distance markers
 
-var promise = $.getJSON('./data/finley5k_distMarkers.geojson');
+var promise = $.getJSON('./data/CARTO_finley5k_distMarkers.geojson');
 promise.then(function(data) {
 	var distance = L.geoJson(data);
 	var miles = L.geoJson(data, {
