@@ -1,0 +1,14 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "Name": "1 mile", "dist": 1, "unit": "mi" }, "geometry": { "type": "Point", "coordinates": [ -84.55838861, 38.20627508, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "2 miles", "dist": 2, "unit": "mi" }, "geometry": { "type": "Point", "coordinates": [ -84.55466521, 38.20268004, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "3 miles", "dist": 3, "unit": "mi" }, "geometry": { "type": "Point", "coordinates": [ -84.55457578, 38.20811731, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "1 km", "dist": 1, "unit": "km" }, "geometry": { "type": "Point", "coordinates": [ -84.55566356, 38.20969938, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "2 km", "dist": 2, "unit": "km" }, "geometry": { "type": "Point", "coordinates": [ -84.55867826, 38.20275623, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "3 km", "dist": 3, "unit": "km" }, "geometry": { "type": "Point", "coordinates": [ -84.557165, 38.2027, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "4 km", "dist": 4, "unit": "km" }, "geometry": { "type": "Point", "coordinates": [ -84.55215044, 38.20634698, 0.0 ] } }
+]
+}
