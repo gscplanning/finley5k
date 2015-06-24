@@ -6,11 +6,16 @@
 	<link href='https://api.tiles.mapbox.com/mapbox.js/v2.2.0/mapbox.css' rel='stylesheet' />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="./css/L.Control.Locate.min.css" />
+	<!--[if lt IE 9]>
+	    <link rel="stylesheet" href="./css/L.Control.Locate.ie.min.css"/>
+	<![endif]-->
 
 
 	<script src='https://api.tiles.mapbox.com/mapbox.js/v2.2.0/mapbox.js'></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script type="text/javascript" src="./js/leaflet.textpath.js"></script>
+	<script src="./js/L.Control.Locate.min.js" ></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 
@@ -61,6 +66,16 @@
   			-webkit-text-stroke-width: 1px;
     			-webkit-text-stroke-color: #f3f3f3;
   		}
+  		.parking-active {
+  			background-color: #3C9FD8 !important;
+  			color: white !important;
+  			font-weight: bold !important;
+  		}
+  		.leaflet-control-locate>a>.fa {
+  			font: normal normal normal 14px/1.75 FontAwesome;
+  			font-size: 14px;
+  			padding-left: 35%;
+  		}
 	</style>
 </head>
 <body>
@@ -90,7 +105,7 @@
 					<li><a href="#" id="km"><i class="fa fa-circle"></i> Kilometers</a></li>
 				</ul>
 			</div>
-			<!-- <button type="button" class="btn btn-default">Play Route</button> -->
+			<button type="button" class="btn btn-default" id="parking">Parking</button>
 		</div>
 	</div>
 </body>
@@ -112,6 +127,35 @@ var map = L.mapbox.map('map', null, {
 });
 
 map.fitBounds(courseBounds);
+
+// Allow users to see their location
+L.control.locate({
+    position: 'topleft',  // set the location of the control
+    drawCircle: true,  // controls whether a circle is drawn that shows the uncertainty about the location
+    follow: true,  // follow the user's location
+    setView: true, // automatically sets the map view to the user's location, enabled if `follow` is true
+    keepCurrentZoomLevel: false, // keep the current map zoom level when displaying the user's location. (if `false`, use maxZoom)
+    stopFollowingOnDrag: false, // stop following when the map is dragged if `follow` is true (deprecated, see below)
+    remainActive: false, // if true locate control remains active on click even if the user's location is in view.
+    markerClass: L.circleMarker, // L.circleMarker or L.marker
+    icon: 'fa fa-map-marker',  // class for icon, fa-location-arrow or fa-map-marker
+    iconLoading: 'fa fa-spinner fa-spin',  // class for loading icon
+    circlePadding: [0, 0], // padding around accuracy circle, value is passed to setBounds
+    metric: false,  // use metric or imperial units
+    onLocationError: function(err) {alert(err.message)},  // define an error callback function
+    onLocationOutsideMapBounds:  function(context) { // called when outside map boundaries
+            alert(context.options.strings.outsideMapBoundsMsg);
+    },
+    showPopup: true, // display a popup when the user click on the inner marker
+    strings: {
+        title: "Show me where I am",  // title of the locate control
+        metersUnit: "meters", // string for metric units
+        feetUnit: "feet", // string for imperial units
+        popup: "You are within {distance} {unit} from this point",  // text to appear if user clicks on circle
+        outsideMapBoundsMsg: "You seem located outside the boundaries of the map" // default message for onLocationOutsideMapBounds
+    },
+    locateOptions: {}  // define location options e.g enableHighAccuracy: true or maxZoom: 10
+}).addTo(map);
 
 var streets = L.tileLayer('http://{s}.{base}.maps.cit.api.here.com/maptile/2.1/maptile/{mapID}/normal.day/{z}/{x}/{y}/256/png8?app_id={app_id}&app_code={app_code}', {
 	attribution: 'Map &copy; 1987-2014 <a href="http://developer.here.com">HERE</a>',
@@ -187,12 +231,17 @@ promise.then(function(data) {
 
 // Start & Finish markers
 var startIcon = L.icon({
-	iconUrl: './markers/startIcon.svg',
-	iconSize: [20,20]
+	iconUrl: './markers/startFlag.svg',
+	iconSize: [33,39],
+	iconAnchor: [8,33],
+	popupAnchor: [7,-22]
 })
 var finishIcon = L.icon({
-	iconUrl: './markers/finishIcon.png',
-	iconSize: [20,20]
+	iconUrl: './markers/cfaFlag.svg',
+	iconSize: [33,39],
+	iconAnchor: [20,33],
+	popupAnchor: [-4,-22]
+
 })
 
 var promise = $.getJSON('./data/CARTO_finley5k_startFinish.geojson');
@@ -214,7 +263,7 @@ promise.then(function(data) {
 				var name = feature.properties.Name;
 				var letterOne = name[0];
 				var letterRest = name.substr(1).toLowerCase();
-				this.bindPopup(letterOne + letterRest + ' Line').openPopup()
+				this.bindPopup('<strong>' + letterOne + letterRest + ' Line</strong>').openPopup()
 			}
 			
 			return startMarker
@@ -240,7 +289,7 @@ promise.then(function(data) {
 				var name = feature.properties.Name;
 				var letterOne = name[0];
 				var letterRest = name.substr(1).toLowerCase();
-				this.bindPopup(letterOne + letterRest + ' Line').openPopup()
+				this.bindPopup('<strong>' + letterOne + letterRest + ' Line</strong><br><em>Sponsored by Chik-Fil-A</em>').openPopup()
 			}
 			
 			return finishMarker
@@ -311,6 +360,51 @@ promise.then(function(data) {
 		}
 	});
 });
+
+// Parking
+var parkingIcon = L.icon({
+	iconUrl: './markers/parkingIcon.png',
+	iconSize: [12,12]
+})
+
+var promise = $.getJSON('./data/finley5k_parking.geojson');
+promise.then(function(data) {
+	// var startFinish = L.geoJson(data);
+
+	var parking = L.geoJson(data, {
+		pointToLayer: function(feature, latlng) {
+			var startMarker = L.marker(latlng, {
+				icon: parkingIcon
+			});
+			// var popup= function () {
+			// 	var street = feature.properties.street;
+			// 	var description = feature.properties.description;
+			// 	this.bindPopup('<strong>' + street + '</strong><br>' + description).openPopup()
+			// }
+			
+			return startMarker
+			// 	.on('mouseover', popup)
+			// 	.on('mouseout', function() {
+			// 	this.closePopup();
+			// });
+		}
+	});
+	// parking.addTo(map);
+
+	$("#parking").click(function() {
+		// map.addLayer(streets)
+		// map.removeLayer(satellite)
+		if ($("#parking").hasClass("parking-active")) {
+			map.removeLayer(parking);
+			$("#parking").removeClass("parking-active");
+		} else {
+			map.addLayer(parking);
+			$("#parking").addClass("parking-active");
+		}
+	});
+});
+
+
 
 	
 </script>
