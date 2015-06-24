@@ -129,13 +129,13 @@ var map = L.mapbox.map('map', null, {
 map.fitBounds(courseBounds);
 
 // Allow users to see their location
-L.control.locate({
-    position: 'topleft',  // set the location of the control
-    drawCircle: true,  // controls whether a circle is drawn that shows the uncertainty about the location
-    follow: true,  // follow the user's location
-    setView: true, // automatically sets the map view to the user's location, enabled if `follow` is true
-    keepCurrentZoomLevel: false, // keep the current map zoom level when displaying the user's location. (if `false`, use maxZoom)
-    stopFollowingOnDrag: false, // stop following when the map is dragged if `follow` is true (deprecated, see below)
+var lc = L.control.locate({
+    position: 'topleft',
+    drawCircle: true,
+    follow: true,
+    setView: true,
+    keepCurrentZoomLevel: false,
+    stopFollowingOnDrag: false,
     remainActive: false, // if true locate control remains active on click even if the user's location is in view.
     markerClass: L.circleMarker, // L.circleMarker or L.marker
     icon: 'fa fa-map-marker',  // class for icon, fa-location-arrow or fa-map-marker
@@ -154,8 +154,18 @@ L.control.locate({
         popup: "You are within {distance} {unit} from this point",  // text to appear if user clicks on circle
         outsideMapBoundsMsg: "You seem located outside the boundaries of the map" // default message for onLocationOutsideMapBounds
     },
-    locateOptions: {}  // define location options e.g enableHighAccuracy: true or maxZoom: 10
+    locateOptions: {
+    	maxZoom: 16
+    }  // define location options e.g enableHighAccuracy: true or maxZoom: 10
 }).addTo(map);
+
+map.on('startfollowing', function() {
+    map.on('dragstart', lc._stopFollowing, lc);
+}).on('stopfollowing', function() {
+    map.off('dragstart', lc._stopFollowing, lc);
+});
+
+//basemaps!
 
 var streets = L.tileLayer('http://{s}.{base}.maps.cit.api.here.com/maptile/2.1/maptile/{mapID}/normal.day/{z}/{x}/{y}/256/png8?app_id={app_id}&app_code={app_code}', {
 	attribution: 'Map &copy; 1987-2014 <a href="http://developer.here.com">HERE</a>',
