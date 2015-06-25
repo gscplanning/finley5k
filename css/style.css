@@ -1,0 +1,56 @@
+body {
+			margin:0; padding:0; 
+		}
+  		#map {
+			width: 100%;
+			height: 100%;
+			font-family: 'Open Sans', Arial, sans-serif;
+	    	}
+
+	    	.active {
+	    		font-weight: bold !important;
+	    	}
+
+  		.mi-label, .km-label{
+  			font-family: 'Open Sans', Arial, sans-serif;
+  			color: #f3f3f3;
+  			border-radius: 16px;
+  			border: 2px solid #f3f3f3;
+  			opacity: 1;
+  			text-align: center;
+  		}
+
+  		.mi-label {
+  			background: #E88CA9;
+  		}
+
+  		.km-label {
+  			background: #B38CB4;
+  		}
+
+  		.menu-ui {
+  			position: absolute;
+  			top: 10px; right: 10px;
+  			z-index: 1;
+  		}
+
+  		#miles>i {
+  			color:#E88CA9;
+  			-webkit-text-stroke-width: 1px;
+    			-webkit-text-stroke-color: #f3f3f3;
+  		}
+  		#km>i {
+  			color:#B38CB4;
+  			-webkit-text-stroke-width: 1px;
+    			-webkit-text-stroke-color: #f3f3f3;
+  		}
+  		.parking-active {
+  			background-color: #3C9FD8 !important;
+  			color: white !important;
+  			font-weight: bold !important;
+  		}
+  		.leaflet-control-locate>a>.fa {
+  			font: normal normal normal 14px/1.75 FontAwesome;
+  			font-size: 14px;
+  			padding-left: 35%;
+  		}
