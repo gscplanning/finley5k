@@ -275,7 +275,7 @@ promise.then(function(data) {
 			return startMarker
 		}
 	});
-	// parking.addTo(map);
+	parking.addTo(map);
 
 	$("#parking").click(function() {
 		// map.addLayer(streets)
